@@ -18,7 +18,7 @@ print(f"Neel scored {neel_marks} %")
 print(f"Pankaj scored {pan_marks} %")
 
 # Adding a new entry in the dictionary. 
-marks["Pankaj"] = 96
+marks["Pankaj"] = 96.5
 
 # Printing the whole dictionary.
 print(marks)
