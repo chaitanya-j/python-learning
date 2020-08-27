@@ -1,4 +1,10 @@
-Roll_no, Name, Marks
- 22, Chaitanya, 99
- 23, Vishrut, 98
- 24, Adwait, 97
+Roll_no, Name, Marks, Age, Div, House_no
+ 22, "Chaitanya", 99, 12, "Dahlia", 1
+ 23, "Vishrut", 98, 12, "Dahlia", 2
+ 24, "Adwait", 97, 11, "Aster", 4
+ 29, "Aditya", 88, 12, "Jasmine", 3
+ 33, "Tim", 87, 11, "Tulip", 4
+ 32, "Tanmay", 98, 12, "Mercury", 1
+ 12, "Tina", 43, 11, "Pluto", 3
+ 11, "Rina", 44, 14, "A", 4
+ 2, "Anoushka", 1, 9, "Z", 5
