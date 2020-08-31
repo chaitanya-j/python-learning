@@ -5,7 +5,7 @@ def say_hello(n):
     
 def do_magic(foo):
 
-    # Checking if foo is callable.
+    # Checking if foo is callable. Call only if it is a function
     if callable(foo):
         print("I recived", foo)
         foo("Chaitanya")
