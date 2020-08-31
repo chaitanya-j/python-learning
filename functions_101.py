@@ -14,5 +14,6 @@ def do_magic(foo):
     else:
         print("Please give a function")
         
+        
 print("Starting....")
 do_magic(100)
