@@ -6,8 +6,8 @@ for i in range(len(arr2)):
     print(i)
 
 usr = int(input("Please enter the no you want to remove:"))
-o = len(arr2)
-for m in range(o):
+c = len(arr2)
+for m in range(c):
     if arr2[m] == usr:
         arr2.pop(m)
         break
