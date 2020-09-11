@@ -11,7 +11,7 @@ def start_pomodoro():
 
     # Gave condition as true to the loop.
     while True:
-        time.sleep(1)
+        time.sleep(60)
 
         # After each passing minute the  no of minutes will be reduced by 1.
         t -= 1
