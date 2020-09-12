@@ -18,6 +18,7 @@ while True:
             # Adding the perfect int in the list, sal
             sal.append(i2_input_int)
 
+        # Accepting the value error and letting the user try again, thus preventing the program from crashing.
         except ValueError as v:
             print("Please enter a number! Please Try Again!")
             print("The real ValueError is :", v)
