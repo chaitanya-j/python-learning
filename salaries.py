@@ -18,8 +18,9 @@ while True:
             # Adding the perfect int in the list, sal
             sal.append(i2_input_int)
 
-        except ValueError:
+        except ValueError as v:
             print("Please enter a number! Please Try Again!")
+            print("The real ValueError is :", v)
     
     if i == "n" or i == "N":
         sal.sort()
