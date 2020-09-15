@@ -3,7 +3,9 @@ marks = {
     "Chaitanya": 98.5,
     "Neel": 95,
     "Samarth": 93
+    
 }
+
 
 # Reading an entry in in marks using square bracket notation.
 ch_marks = marks["Chaitanya"]
@@ -21,4 +23,7 @@ print(f"Pankaj scored {pan_marks} %")
 marks["Pankaj"] = 96.5
 
 # Printing the whole dictionary.
+print(marks)
+
+marks.pop('Pankaj')
 print(marks)
