@@ -17,7 +17,7 @@ print(dicts)
 
 # Attempting to write a csv file
 with open('students.csv','w') as csv_out:
-    csv_writer = DictWriter(csv_out, d1.keys())
+    csv_writer = DictWriter(csv_out, ['rollno','name'])
     csv_writer.writeheader()
     csv_writer.writerows(dicts)
 
