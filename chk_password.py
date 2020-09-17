@@ -18,7 +18,7 @@ spl_characters = ['~','!','@','#','$','%','^','*','&']
 nos = ['0','1','2','3','4','5','6','7','8','9']
 
 # Checking Password length
-if len(passw) <= 9:
+if len(passw) >= 9:
     flg_passwd_length = True
 
 # Using the function list() to seperate every character in the password, making it easy check if the password has all required values
@@ -42,7 +42,7 @@ for pass_ch in passwd_chars:
 # Now checking if any flag is still False
 # If its False we print that a type of value is missing 
 if len(passw) < 9:
-    print('Password must be greater than or equal to 9! Please try again!')
+    print('Password must have more than 9 characters! Please try again!')
 
 if flg_s_letters == True and flg_b_letters == True and flg_spl_characters == True and flg_chk_no == True and flg_passwd_length == True:
     print('You have set a perfect password')
