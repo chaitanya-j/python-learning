@@ -1,8 +1,11 @@
+# In this program we are testing if a user's password is perfect or not by the following parameters:
+# Password should have at least two of the following elements:
+# 1.Samall Alphabets,  2.Capital Alphabets,  3.Special Characters,  4.Numbers
+
 # Asking User to enter his or her desired password
 passw = input('Please enter your desired passsword:')
 
-# Putting Flags so it will be easy to check
-
+# Putting Flag so it will be easy to check
 flg_passwd_length = False
 
 
@@ -21,6 +24,7 @@ if len(passw) >= 9:
 # Using the function list() to seperate every character in the password, making it easy check if the password has all required values
 passwd_chars = list(passw)
 
+# Making count variables to check the no of values of a specific type
 cnt_sl = 0
 cnt_cl = 0
 cnt_spl_chars = 0
@@ -50,16 +54,16 @@ if cnt_sl >= 2 and cnt_cl >= 2 and cnt_spl_chars >= 2 and cnt_nums >= 2:
         print('You have set a perfect password')
 
 if cnt_sl < 2:
-    print('Password must have at least one Small Alphabet!')
+    print('Password must have at least two Small Alphabet!')
 
 if cnt_cl < 2:
-    print('Password must have at least one Capital Alphabet!')
+    print('Password must have at least two Capital Alphabet!')
 
 if cnt_spl_chars < 2:
-    print('Password must have at least one Special Character!')
+    print('Password must have at least two Special Character!')
 
 if cnt_nums < 2:
-    print('Password must have at least one Numerical Value!')
+    print('Password must have at least two Numerical Value!')
 
 
   
