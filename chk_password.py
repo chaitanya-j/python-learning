@@ -49,23 +49,23 @@ for pass_ch in passwd_chars:
 # Now checking if any flag is still False
 # If its False we print that a type of value is missing 
 if chk_len < min_len:
-    print('Password must have more than 9 characters! Please try again!')
+    print(f'Password must have more than {min_len} characters! Please try again!')
 
 if cnt_sl >= min_sls and cnt_cl >= min_cap_l and cnt_spl_chars >= min_spl_chars and cnt_nums >= min_nos:
     if chk_len >= min_len:
         print('You have set a perfect password')
 
 if cnt_sl < min_sls:
-    print('Password must have at least two Small Alphabet!')
+    print(f'Password must have at least {min_sls} Small Alphabet!')
 
 if cnt_cl < min_cap_l:
-    print('Password must have at least two Capital Alphabet!')
+    print(f'Password must have at least {min_cap_l} Capital Alphabet!')
 
 if cnt_spl_chars < min_spl_chars:
-    print('Password must have at least two Special Character!')
+    print(f'Password must have at least {min_spl_ch} Special Character!')
 
 if cnt_nums < min_nos:
-    print('Password must have at least two Numerical Value!')
+    print(f'Password must have at least {min_nos} Numerical Value!')
 
 
   
