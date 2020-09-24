@@ -1,14 +1,17 @@
 # In this program we are testing if a user's password is perfect or not by the following parameters:
 # Password should have at least two of the following elements:
 # 1.Samall Alphabets,  2.Capital Alphabets,  3.Special Characters,  4.Numbers
+from configparser import ConfigParser
+config = ConfigParser()
+config.read('pwd_config.ini')
+min_sls = int(config.get('Pref','min_s_lts'))
+min_cap_l = int(config.get('Pref','min_cap_lts'))
+min_spl_chars = int(config.get('Pref','min_spl_ch'))
+min_nos = int(config.get('Pref','min_nums'))
+min_len = int(config.get('Pref','min_ps_len'))
 
 # Asking User to enter his or her desired password
 passw = input('Please enter your desired passsword:')
-
-# Putting a Flag so it will be easy to check
-flg_passwd_length = False
-
-
 
 # Making lists of all small letters, big letters,spl.characters and nos.
 # Thus making it easy to check if the password has all required values
@@ -18,8 +21,7 @@ spl_characters = ['~','!','@','#','$','%','^','*','&','[',']','(',')','{','}',',
 nos = ['0','1','2','3','4','5','6','7','8','9']
 
 # Checking Password length
-if len(passw) >= 9:
-    flg_passwd_length = True
+chk_len = len(passw)
 
 # Using the function list() to seperate every character in the password, making it easy check if the password has all required values
 passwd_chars = list(passw)
@@ -46,23 +48,23 @@ for pass_ch in passwd_chars:
 
 # Now checking if any flag is still False
 # If its False we print that a type of value is missing 
-if flg_passwd_length == False:
+if chk_len < min_len:
     print('Password must have more than 9 characters! Please try again!')
 
-if cnt_sl >= 2 and cnt_cl >= 2 and cnt_spl_chars >= 2 and cnt_nums >= 2:
-    if flg_passwd_length == True:
+if cnt_sl >= min_sls and cnt_cl >= min_cap_l and cnt_spl_chars >= min_spl_chars and cnt_nums >= min_nos:
+    if chk_len >= min_len:
         print('You have set a perfect password')
 
-if cnt_sl < 2:
+if cnt_sl < min_sls:
     print('Password must have at least two Small Alphabet!')
 
-if cnt_cl < 2:
+if cnt_cl < min_cap_l:
     print('Password must have at least two Capital Alphabet!')
 
-if cnt_spl_chars < 2:
+if cnt_spl_chars < min_spl_chars:
     print('Password must have at least two Special Character!')
 
-if cnt_nums < 2:
+if cnt_nums < min_nos:
     print('Password must have at least two Numerical Value!')
 
 
