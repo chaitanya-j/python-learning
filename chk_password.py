@@ -62,7 +62,7 @@ if cnt_cl < min_cap_l:
     print(f'Password must have at least {min_cap_l} Capital Alphabet!')
 
 if cnt_spl_chars < min_spl_chars:
-    print(f'Password must have at least {min_spl_ch} Special Character!')
+    print(f'Password must have at least {min_spl_chars} Special Character!')
 
 if cnt_nums < min_nos:
     print(f'Password must have at least {min_nos} Numerical Value!')
