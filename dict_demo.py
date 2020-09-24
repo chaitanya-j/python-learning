@@ -5,7 +5,7 @@ marks = {
     "Samarth": 93
     
 }
-
+flg = False
 
 # Reading an entry in in marks using square bracket notation.
 ch_marks = marks["Chaitanya"]
@@ -27,3 +27,8 @@ print(marks)
 
 marks.pop('Pankaj')
 print(marks)
+
+if 'Neel' in marks:
+    flg = True
+
+print(flg)

@@ -5,7 +5,7 @@
 # Asking User to enter his or her desired password
 passw = input('Please enter your desired passsword:')
 
-# Putting Flag so it will be easy to check
+# Putting a Flag so it will be easy to check
 flg_passwd_length = False
 
 
