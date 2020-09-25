@@ -35,7 +35,7 @@ nos = []
 # Using range func to get nos from 0 to 0
 n_range = range(0,10)
 
-# Using fo loop to convert the nos into str and append into the list nos
+# Using fo loop to convert the nos into str and append into the list 
 for number in n_range:
     conv_no = str(number)
     nos.append(conv_no)
