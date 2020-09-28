@@ -1,5 +1,14 @@
+import math
+
 # Asking user to enter the numbers 
 def calc_hcf(*args):
+    '''
+    Product of CALADIUM tech.
+    To Make Your Program Easy!
+
+    This is a module you can use to do many things in math.
+    in this function you can give unlimited numbers and get the HCF of them
+    '''
     args_set = set(args)
 
     min_no = min(args_set)
@@ -24,8 +33,7 @@ def calc_hcf(*args):
 
     return hcf
 
-gcd = calc_hcf(25,35,75,90,50,12,11,10,34)
-print(f'The HCF is:{gcd}')
+# ============================================================================================== #
 
 def calc_lcm(*args):
     args_set2 = set(args)
@@ -58,7 +66,24 @@ def calc_lcm(*args):
 
     return lcm
 
-scm = calc_lcm(10,20,30)
-print(f'LCM is:{scm}')
+# ============================================================================================== #
 
+def calc_sqrt(no):
+    return(math.sqrt(no))
+
+def add_nos(*args):
+    cnt = 0
+
+    for no in args:
+        cnt = cnt + no
     
+    return cnt
+
+def mult_nos(*args):
+    multp = 1
+    for no in args:
+        no = no * multp
+
+    return multp
+
+calc_hcf()

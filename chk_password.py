@@ -1,8 +1,8 @@
 import string
 
 # Getting all alphabets upper case as well as lower case
-sl = (string.ascii_uppercase)
-cl = (string.ascii_lowercase)
+cl = (string.ascii_uppercase)
+sl = (string.ascii_lowercase)
 
 # In this program we are testing if a user's password is perfect or not by the following parameters:
 # Password should have of the following elements as per preferences:
@@ -27,8 +27,8 @@ passw = input('Please enter your desired passsword:')
 
 # Making lists of all small letters, big letters,spl.characters and nos.
 # Thus making it easy to check if the password has all required values
-small_letters = list(cl)
-big_letters = list(sl)
+small_letters = list(sl)
+big_letters = list(cl)
 spl_characters = ['~','!','@','#','$','%','^','*','&','[',']','(',')','{','}',',',':',';','_','-','.','"',"'"]
 nos = []
 
@@ -68,6 +68,9 @@ for pass_ch in passwd_chars:
 
 # Now checking if any flag is still False
 # If its False we print that a type of value is missing 
+if passwd_chars[0] == ' e ':
+    print('Password must not start with a space')
+
 if chk_len < min_len:
     print(f'Password must have more than {min_len} characters! Please try again!')
 
