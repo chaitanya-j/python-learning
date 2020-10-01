@@ -1,37 +1,27 @@
-import requests
-import shutil
+import threading
+import time
 
-lst_urls = [
-    'https://unsplash.com/photos/207AH3zWnzw',
-    'https://unsplash.com/photos/WsofgRe566A',
-    'https://unsplash.com/photos/JhxGkGgd3Sw',
-    'https://unsplash.com/photos/pMqlzXuevkI',
-    'https://unsplash.com/photos/GpNOhig3LSU',
-    'https://unsplash.com/photos/1iVKwElWrPA',
-    'https://unsplash.com/photos/feXpdV001o4',
-    'https://unsplash.com/photos/TxXuh_hAFd8',
-    'https://unsplash.com/photos/aQYgUYwnCsM',
-    'https://unsplash.com/photos/pgdaAwf6IJg'
-]
-
-
-def download_file(url, img_file):
-    print(f'Downloading file {url}...')
+def do_sleep(t):
+    sleep_time = t * 4
+    print(f'Thread-{t}: Needs to sleep for {sleep_time} seconds')
+       
+    for _ in range(1,sleep_time):
+        print(f'Thread-{t}: {sleep_time} seconds remaining')
+        time.sleep(1)
+        sleep_time -= 1
     
-    resp = requests.get(url, stream=True)
-    img_bytes = resp.raw
+    print(f'Thread-{t} completed')
+        
+print('Starting the thread demo..')
+threads = []
 
-    resp.raw.decode_content = True
+for i in range(1,6):
+    #print('i = ', i)
+    th_tmp = threading.Thread(target=do_sleep, args=[i])
+    th_tmp.start()
+    threads.append(th_tmp)    
 
-    if resp.status_code == 200:    
-        print(f'Response received {resp}... processing to save it as file with name {img_file}')
+for th in threads:
+    th.join()
 
-        img = open(img_file,'wb')
-        shutil.copyfileobj(img_bytes, img)
-        img.close()
-    else:
-        print("Image Couldn't be retreived")
-     
-    del resp
-
-download_file('https://images.unsplash.com/photo-1601220466015-aea72e296410?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1986&q=80', 'Mount_Everest.jpg')
+print('Program completed')
