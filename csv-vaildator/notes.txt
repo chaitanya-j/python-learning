@@ -1,0 +1,41 @@
+CSV file should have following header:
+id,hostname,ip-address,criticality,freq,location
+
+id - Mandatory, integer & should be unique
+hostname - Mandatory, Text with hyphen(s) or underscore(s) & should be unique
+ip-address - Mandatory, 4 numbers separated by dots, numbers must be between 0 - 255 & should be unique
+criticality - Mandatory, can be either of following values: High, Medium, Low
+freq - Mandatory, integer
+location - Optional, Text
+
+Example of valid CSV:
+---------------------
+id,hostname,ip-address,criticality,freq,location
+10,test-machine-01,10.20.20.30,High,20,Pune
+11,test-vm-03,10.200.200.150,Medium,
+13,prod-01,63.123.254.11,High,35,London
+
+Example of invalid CSV: Any rule broken makes the CSV invalid
+-----------------------
+id,hostname,ip-address,criticality,freq,loc
+10,test-machine-01,10.20.20.30,High,20,Pune
+11,test-vm-03,10.200.200.150,Medium,
+13,prod-01,63.123.254.11,High,35,London
+
+-----------------------
+id,hostname,ip-address,criticality,freq,location
+10,test-machine-01,10.20.20.30,High,20,Pune
+10,test-vm-03,10.200.200.150,Medium,
+13,prod-01,63.123.254.11,High,35,London
+
+-----------------------
+id,hostname,ip-address,criticality,freq,location
+10,test-machine-01,10.30.20.20.30,High,20,Pune
+10,test-vm-03,10.200.200.150,Medium,
+13,prod-01,63.123.254.11,High,35,London
+
+-----------------------
+id,hostname,ip-address,criticality,freq,location
+10,test-machine-01,10.20.20.30,High,20,Pune
+10,test-vm-03,10.200.200.150,Medium,
+13,prod-01,63.123.254.11,High,35,London
