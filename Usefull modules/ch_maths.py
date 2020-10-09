@@ -3,7 +3,6 @@ import math
 # Asking user to enter the numbers 
 def calc_hcf(*args):
     '''
-    Product of CALADIUM tech.
     To Make Your Program Easy!
 
     This is a module you can use to do many things in math.

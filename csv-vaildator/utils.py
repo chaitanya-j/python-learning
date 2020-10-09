@@ -46,21 +46,37 @@ def validate_crit(crit):
 
 def validate_hname(hname):
     '''
-    This function will check if the hostname is alphanumeric or not.
+    This function checks if the hostname is alphanumeric or not.
     It will return True if it's alphanumeric or False if it's not alphanumeric .
     '''
     flg = False
     chk_isalnum = hname.isalnum()
-    lst_hname = list(hname)
-    lst_lower = list(string.ascii_lowercase)
-    lst_upper = list(string.ascii_uppercase)
-    lst_nums = list(string.digits)
-    combine_lsts = [lst_upper + lst_lower + lst_nums + '-','.']
+
     if chk_isalnum == True:
-        return True
-    
-    else:
-       if 
+        flg = True
+        return flg
+
+    else :
+        
+        # Here we are seperating each character of the hostname by the function : list, so we can check each character of the hostname
+        # by iterating.
+        lst_hname = list(hname)
+        lst_lower = list(string.ascii_lowercase)
+        lst_upper = list(string.ascii_uppercase)
+        lst_nums = list(string.digits)
+        allowed_chars = lst_upper + lst_lower + lst_nums 
+        allowed_chars.append('.')
+        allowed_chars.append('-')
+
+        for char in lst_hname:
+            if char in allowed_chars:
+                flg = True               
+
+            else:
+                return flg
+
+        if flg == True:
+            return flg
 
 
 
@@ -72,5 +88,5 @@ print('----------------------------------------------------')
 v2 = validate_crit('ME')
 print(v2)
     
-v3 = validate_hname('ve12vtut')
+v3 = validate_hname('')
 print(v3)
