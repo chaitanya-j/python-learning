@@ -1,4 +1,4 @@
 id,hostname,ip-address,criticality,freq,location
 10,test-machine-01,10.20.20.30,High,20,Pune
-11,test-vm-03,10.200.200.150,Medium,
+11a,test-vm-03,10.200.200.150,Medium,tt,
 13,prod-01,63.123.254.11,High,35,London

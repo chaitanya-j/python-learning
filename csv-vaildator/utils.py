@@ -1,5 +1,25 @@
 import string
 
+def chk_if_int(element):
+    
+    '''
+    This function checks if the element is an int
+    and returns True if it is int or False if it's not int
+    '''
+    try:
+        conv = int(element)
+        if type(conv) == int:
+            return True
+
+        else:
+            return False
+
+
+    except ValueError:
+        return False
+
+    
+
 def validate_ipaddr(ip):
     '''
     This function checks if the ip address you gave is valid.
@@ -79,14 +99,31 @@ def validate_hname(hname):
             return flg
 
 
-
-v = validate_ipaddr('0.0.0.0')
-print(v)
-
-print('----------------------------------------------------')
-
-v2 = validate_crit('ME')
-print(v2)
+def check_if_unique_in_lst(element, lst):
+    '''
+    This function checks if the passed element is repeated in list
+    Arguments: element: element to be checked
+               lst: list in which the element needs to be checked
+    Returns:
+              result: True - If the element does not repeat
+                      False - If the element repeats
+              rep_count: Number of times the element is repeated in the list
+    '''
+    rep_count = lst.count(element)
     
-v3 = validate_hname('')
-print(v3)
+    if rep_count == 1:
+        result = True
+    elif rep_count > 1:
+        result = False
+
+    return result, rep_count
+
+def chk_if_empty(element):
+    '''
+    This function checks if the element passed is an empty string
+    Returns True if empty and False otherwise
+    '''
+    if element == '':
+        return False
+    else:
+        return True
