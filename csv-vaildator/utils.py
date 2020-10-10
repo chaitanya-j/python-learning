@@ -127,3 +127,14 @@ def chk_if_empty(element):
         return False
     else:
         return True
+
+def chk_res_lst(obj_lst):
+    flg = False
+    for obj in obj_lst:
+        res = obj.res
+        if res == False:
+            return False
+        else:
+            flg = True
+
+    return flg

@@ -114,67 +114,132 @@ for i in range(1, num_rows):
 
 print('------------------------------ RESULTS -------------------------------------')
 
-print(f'\nRule 1: {r1.name}')
+res_lst1 = chk_res_lst(r1.results)
+if res_lst1 == True:
+    print(f'\nRule 1: {r1.name} [OK]')
+else:
+    print(f'\nRule 1: {r1.name} [NOT OK]')
 for tmp_res1 in r1.results:
     if tmp_res1.res == False:
         print('\tRow#',tmp_res1.row_no, ':', tmp_res1.value)
 
-print(f'\nRule 2: {r2.name}')
+  
+res_lst2 = chk_res_lst(r2.results)
+if res_lst2 == True:
+    print(f'\nRule 2: {r2.name} [OK]')
+else:
+    print(f'\nRule 2: {r2.name} [NOT OK]')
 for tmp_res2 in r2.results:
     if tmp_res2.res == False:
         print('\tRow#',tmp_res2.row_no, ':', tmp_res2.value)
 
-print(f'\nRule 3: {r3.name}')
+    
+res_lst3 = chk_res_lst(r3.results)
+if res_lst3 == True:
+    print(f'\nRule 3: {r3.name} [OK]')
+else:
+    print(f'\nRule 3: {r3.name} [NOT OK]')
 for tmp_res3 in r3.results:
     if tmp_res3.res == False:
         print('\tRow#',tmp_res3.row_no, ':', tmp_res3.value)
 
-print(f'\nRule 4: {r4.name}')
+    
+res_lst4 = chk_res_lst(r4.results)
+if res_lst4 == True:
+    print(f'\nRule 4: {r4.name} [OK]')
+else:
+    print(f'\nRule 4: {r4.name} [NOT OK]')
 for tmp_res4 in r4.results:
     if tmp_res4.res == False:
         print('\tRow#',tmp_res4.row_no, ':', tmp_res4.value)
 
-print(f'\nRule 5: {r5.name}')
+    
+res_lst5 = chk_res_lst(r5.results)
+if res_lst5 == True:
+    print(f'\nRule 5: {r5.name} [OK]')
+else:
+    print(f'\nRule 5: {r5.name} [NOT OK]')
 for tmp_res5 in r5.results:
     if tmp_res5.res == False:
         print('\tRow#',tmp_res5.row_no, ':', tmp_res5.value)
 
-print(f'\nRule 6: {r6.name}')
+    
+res_lst6 = chk_res_lst(r6.results)
+if res_lst6 == True:
+    print(f'\nRule 6: {r6.name} [OK]')
+else:
+    print(f'\nRule 6: {r6.name} [NOT OK]')
 for tmp_res6 in r6.results:
     if tmp_res6.res == False:
         print('\tRow#',tmp_res6.row_no, ':', tmp_res6.value)
 
-print(f'\nRule 7: {r7.name}')
+
+
+res_lst7 = chk_res_lst(r7.results)
+if res_lst7 == True:
+    print(f'\nRule 7: {r7.name} [OK]')
+else:
+    print(f'\nRule 7: {r7.name} [NOT OK]')
 for tmp_res7 in r7.results:
     if tmp_res7.res == False:
         print('\tRow#',tmp_res7.row_no, ':', tmp_res7.value)
 
-print(f'\nRule 8: {r8.name}')
+    
+res_lst8 = chk_res_lst(r8.results)
+if res_lst8 == True:
+    print(f'\nRule 8: {r8.name} [OK]')
+else:
+    print(f'\nRule 8: {r8.name} [NOT OK]')
 for tmp_res8 in r8.results:
     if tmp_res8.res == False:
         print('\tRow#',tmp_res8.row_no, ':', tmp_res8.value)
 
-print(f'\nRule 9: {r9.name}')
+
+res_lst9 = chk_res_lst(r9.results)
+if res_lst9 == True:
+    print(f'\nRule 9: {r9.name} [OK]')
+else:
+    print(f'\nRule 9: {r9.name} [NOT OK]')
 for tmp_res9 in r9.results:
     if tmp_res9.res == False:
         print('\tRow#',tmp_res9.row_no, ':', tmp_res9.value)
+        
 
-print(f'\nRule 10: {r10.name}')
+res_lst10 = chk_res_lst(r10.results)
+if res_lst10 == True:
+    print(f'\nRule 10: {r10.name} [OK]')
+else:
+    print(f'\nRule 10: {r10.name} [NOT OK]')
 for tmp_res10 in r10.results:
     if tmp_res10.res == False:
         print('\tRow#',tmp_res10.row_no, ':', tmp_res10.value)
 
-print(f'\nRule 11: {r11.name}')
+    
+res_lst11 = chk_res_lst(r11.results)
+if res_lst11 == True:
+    print(f'\nRule 11: {r11.name} [OK]')
+else:
+    print(f'\nRule 11: {r11.name} [NOT OK]')
 for tmp_res11 in r11.results:
     if tmp_res11.res == False:
         print('\tRow#',tmp_res11.row_no, ':', tmp_res11.value)
 
-print(f'\nRule 12: {r12.name}')
+
+res_lst12 = chk_res_lst(r12.results)
+if res_lst12 == True:
+    print(f'\nRule 12: {r12.name} [OK]')
+else:
+    print(f'\nRule 12: {r12.name} [NOT OK]')
 for tmp_res12 in r12.results:
     if tmp_res12.res == False:
         print('\tRow#',tmp_res12.row_no, ':', tmp_res12.value)
 
-print(f'\nRule 13: {r13.name}')
+
+res_lst13 = chk_res_lst(r13.results)
+if res_lst13 == True:
+    print(f'\nRule 13: {r13.name} [OK]')
+else:
+    print(f'\nRule 13: {r13.name} [NOT OK]')
 for tmp_res13 in r13.results:
     if tmp_res13.res == False:
         print('\tRow#',tmp_res13.row_no, ':', tmp_res13.value)
