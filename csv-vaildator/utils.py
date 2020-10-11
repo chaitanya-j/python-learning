@@ -1,5 +1,6 @@
 import string
 
+
 def chk_if_int(element):
     
     '''
@@ -45,7 +46,6 @@ def validate_ipaddr(ip):
 
     else:
         return False
-
 
 
 def validate_crit(crit):

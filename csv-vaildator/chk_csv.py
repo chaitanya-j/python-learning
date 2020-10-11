@@ -1,7 +1,11 @@
+# Importing the required modules
 import csv
 from utils import *
 from models import *
 
+# Creating empty lists to store the respective values from the csv in their respective lists:
+# Creating lists is very important for uniqeness check!
+# We are using lists and not any other data type because 'a list is always in order'
 id_lst = []
 hostname_lst = []
 ip_addr_lst = []
@@ -32,21 +36,27 @@ r13 = Rule(13,'frequency is mandatory')
 r14 = Rule(14,'header should be exactly the same as required')
 
 
-
+# Opening and readig the CSV file using reader method in read mode
+# Note : Reader object returns list of lists each sublist will contain a row from the CSV
 with open('lptp_info.csv','r') as csv1:
     reader = csv.reader(csv1)
     ctr = 0
 
+    # Using a for loop to access the sublists from reader object
     for row in reader:
+        
+        # If the counter is '0' then we will append the whole row of headers into the list 'header_lst'
         if ctr == 0:
             header_lst = list(row)
+
             # validation for header field - r14
+            # validation : the headers should be exactly the same as - 'id,hostname,ip-address,criticality,freq,location'
             res_headers_valid = chk_headers_v2(header_lst)
             res_r14 = Result(1,res_headers_valid,header_lst)
             r14.results.append(res_r14)
             ctr += 1
 
-
+        # Appending the values of each sublist into their respective lists
         id_lst.append(row[0])
         hostname_lst.append(row[1])
         ip_addr_lst.append(row[2])
@@ -54,12 +64,18 @@ with open('lptp_info.csv','r') as csv1:
         freq_lst.append(row[4])
         loc_lst.append(row[5])
 
-# The length of any list will give the number of records in the csv file 
+# The length of any list will give the number of records in the CSV file 
 num_rows = len(ip_addr_lst)
 
 
-# Validate the csv fields
+# Validate the CSV fields
 for i in range(1, num_rows):
+
+    # THE FOLLOWING LOGIG IS APPLICABLE TO ALL THE VALIDATIONS BELOW :
+    # LOGIC : Appliying the respective functions according to the 'rules'
+    #       : Then creating a result object and storing the "rollno", "value", and the "result" that came from appliying the function
+    #       : Then we are appending the created result object in the respective rule object's results list
+
     # validations on id field - r1, r2, r3
     res_id_int = chk_if_int(id_lst[i])
     res_r1 = Result(i, res_id_int, id_lst[i])
@@ -130,6 +146,7 @@ for i in range(1, num_rows):
 
 print('------------------------------ RESULTS -------------------------------------')
 
+# Printing the results that came from checking each rule object's results list's objects's result
 res_lst1 = chk_res_lst(r1.results)
 if res_lst1 == True:
     print(f'Rule 1: {r1.name} [OK]')

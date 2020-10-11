@@ -1,3 +1,4 @@
+# Creating a "Rule Class" so we can store the 'id', the 'name of the rule' and the 'Result class objects' in the results list.
 class Rule:
     def __init__(self,id,name):
         self.id = id
@@ -5,6 +6,8 @@ class Rule:
         self.results = []
 
 
+# Creating a "Result Class" to store the 'row number', the 'value' and the result.
+# the 'res' object will contain True or False 
 class Result:
     def __init__(self,row_no,res,value):
         self.row_no = row_no
