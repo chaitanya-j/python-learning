@@ -29,13 +29,16 @@ def validate_ipaddr(ip):
     flg = False
     ip_split_lst = list(ip.split('.'))
     for octet in ip_split_lst:
-        octet = int(octet)
-        if octet <= 255 and octet >= 0:
-            if len(ip_split_lst) == 4:
-                flg = True
-             
-        else:
-            flg = False
+        try:
+            octet = int(octet)
+            if octet <= 255 and octet >= 0:
+                if len(ip_split_lst) == 4:
+                    flg = True
+
+            else:
+                flg = False
+        except ValueError:
+            return False
 
     if flg == True:
         return True
@@ -138,3 +141,7 @@ def chk_res_lst(obj_lst):
             flg = True
 
     return flg
+
+def chk_headers_v2(lst_headers):
+    master_lst = ['id','hostname','ip-address','criticality','freq','location']
+    return str(lst_headers) == str(master_lst)

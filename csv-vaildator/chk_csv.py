@@ -8,23 +8,7 @@ ip_addr_lst = []
 crit_lst = []
 freq_lst = []
 loc_lst = []
-
-with open('lptp_info.csv','r') as csv1:
-    reader = csv.reader(csv1)
-
-    for row in reader:
-        #print(row)
-        id_lst.append(row[0])
-        hostname_lst.append(row[1])
-        ip_addr_lst.append(row[2])
-        crit_lst.append(row[3])
-        freq_lst.append(row[4])
-        loc_lst.append(row[5])
-
-print(id_lst)
-
-# The length of any list will give the number of records in the csv file 
-num_rows = len(ip_addr_lst)
+header_lst = []
 
 # Rule objects - to collect validation results
 r1 = Rule(1,'id should be integer')
@@ -44,6 +28,35 @@ r11 = Rule(11,'criticality is mandatory')
 
 r12 = Rule(12,'frequency should be integer')
 r13 = Rule(13,'frequency is mandatory')
+
+r14 = Rule(14,'header should be exactly the same as required')
+
+
+
+with open('lptp_info.csv','r') as csv1:
+    reader = csv.reader(csv1)
+    ctr = 0
+
+    for row in reader:
+        if ctr == 0:
+            header_lst = list(row)
+            # validation for header field - r14
+            res_headers_valid = chk_headers_v2(header_lst)
+            res_r14 = Result(1,res_headers_valid,header_lst)
+            r14.results.append(res_r14)
+            ctr += 1
+
+
+        id_lst.append(row[0])
+        hostname_lst.append(row[1])
+        ip_addr_lst.append(row[2])
+        crit_lst.append(row[3])
+        freq_lst.append(row[4])
+        loc_lst.append(row[5])
+
+# The length of any list will give the number of records in the csv file 
+num_rows = len(ip_addr_lst)
+
 
 # Validate the csv fields
 for i in range(1, num_rows):
@@ -104,21 +117,24 @@ for i in range(1, num_rows):
 # --------------------------------------------------------
 
     # validations on freq field - r12, r13
-    res_freq = chk_if_int(freq_lst[i])
-    res_r12 = Result(i,res_freq,freq_lst[i])
+    res_freq_valid = chk_if_int(freq_lst[i])
+    res_r12 = Result(i,res_freq_valid,freq_lst[i])
     r12.results.append(res_r12)
 
     res_freq_mand = chk_if_empty(freq_lst[i])
     res_r13 = Result(i,res_freq_mand,freq_lst[i])
     r13.results.append(res_r13)
 
+    
+
+
 print('------------------------------ RESULTS -------------------------------------')
 
 res_lst1 = chk_res_lst(r1.results)
 if res_lst1 == True:
-    print(f'\nRule 1: {r1.name} [OK]')
+    print(f'Rule 1: {r1.name} [OK]')
 else:
-    print(f'\nRule 1: {r1.name} [NOT OK]')
+    print(f'Rule 1: {r1.name} [NOT OK]')
 for tmp_res1 in r1.results:
     if tmp_res1.res == False:
         print('\tRow#',tmp_res1.row_no, ':', tmp_res1.value)
@@ -126,9 +142,9 @@ for tmp_res1 in r1.results:
   
 res_lst2 = chk_res_lst(r2.results)
 if res_lst2 == True:
-    print(f'\nRule 2: {r2.name} [OK]')
+    print(f'Rule 2: {r2.name} [OK]')
 else:
-    print(f'\nRule 2: {r2.name} [NOT OK]')
+    print(f'Rule 2: {r2.name} [NOT OK]')
 for tmp_res2 in r2.results:
     if tmp_res2.res == False:
         print('\tRow#',tmp_res2.row_no, ':', tmp_res2.value)
@@ -136,9 +152,9 @@ for tmp_res2 in r2.results:
     
 res_lst3 = chk_res_lst(r3.results)
 if res_lst3 == True:
-    print(f'\nRule 3: {r3.name} [OK]')
+    print(f'Rule 3: {r3.name} [OK]')
 else:
-    print(f'\nRule 3: {r3.name} [NOT OK]')
+    print(f'Rule 3: {r3.name} [NOT OK]')
 for tmp_res3 in r3.results:
     if tmp_res3.res == False:
         print('\tRow#',tmp_res3.row_no, ':', tmp_res3.value)
@@ -146,9 +162,9 @@ for tmp_res3 in r3.results:
     
 res_lst4 = chk_res_lst(r4.results)
 if res_lst4 == True:
-    print(f'\nRule 4: {r4.name} [OK]')
+    print(f'Rule 4: {r4.name} [OK]')
 else:
-    print(f'\nRule 4: {r4.name} [NOT OK]')
+    print(f'Rule 4: {r4.name} [NOT OK]')
 for tmp_res4 in r4.results:
     if tmp_res4.res == False:
         print('\tRow#',tmp_res4.row_no, ':', tmp_res4.value)
@@ -156,9 +172,9 @@ for tmp_res4 in r4.results:
     
 res_lst5 = chk_res_lst(r5.results)
 if res_lst5 == True:
-    print(f'\nRule 5: {r5.name} [OK]')
+    print(f'Rule 5: {r5.name} [OK]')
 else:
-    print(f'\nRule 5: {r5.name} [NOT OK]')
+    print(f'Rule 5: {r5.name} [NOT OK]')
 for tmp_res5 in r5.results:
     if tmp_res5.res == False:
         print('\tRow#',tmp_res5.row_no, ':', tmp_res5.value)
@@ -166,9 +182,9 @@ for tmp_res5 in r5.results:
     
 res_lst6 = chk_res_lst(r6.results)
 if res_lst6 == True:
-    print(f'\nRule 6: {r6.name} [OK]')
+    print(f'Rule 6: {r6.name} [OK]')
 else:
-    print(f'\nRule 6: {r6.name} [NOT OK]')
+    print(f'Rule 6: {r6.name} [NOT OK]')
 for tmp_res6 in r6.results:
     if tmp_res6.res == False:
         print('\tRow#',tmp_res6.row_no, ':', tmp_res6.value)
@@ -177,9 +193,9 @@ for tmp_res6 in r6.results:
 
 res_lst7 = chk_res_lst(r7.results)
 if res_lst7 == True:
-    print(f'\nRule 7: {r7.name} [OK]')
+    print(f'Rule 7: {r7.name} [OK]')
 else:
-    print(f'\nRule 7: {r7.name} [NOT OK]')
+    print(f'Rule 7: {r7.name} [NOT OK]')
 for tmp_res7 in r7.results:
     if tmp_res7.res == False:
         print('\tRow#',tmp_res7.row_no, ':', tmp_res7.value)
@@ -187,9 +203,9 @@ for tmp_res7 in r7.results:
     
 res_lst8 = chk_res_lst(r8.results)
 if res_lst8 == True:
-    print(f'\nRule 8: {r8.name} [OK]')
+    print(f'Rule 8: {r8.name} [OK]')
 else:
-    print(f'\nRule 8: {r8.name} [NOT OK]')
+    print(f'Rule 8: {r8.name} [NOT OK]')
 for tmp_res8 in r8.results:
     if tmp_res8.res == False:
         print('\tRow#',tmp_res8.row_no, ':', tmp_res8.value)
@@ -197,19 +213,20 @@ for tmp_res8 in r8.results:
 
 res_lst9 = chk_res_lst(r9.results)
 if res_lst9 == True:
-    print(f'\nRule 9: {r9.name} [OK]')
+    print(f'Rule 9: {r9.name} [OK]')
 else:
-    print(f'\nRule 9: {r9.name} [NOT OK]')
+    print(f'Rule 9: {r9.name} [NOT OK]')
 for tmp_res9 in r9.results:
     if tmp_res9.res == False:
         print('\tRow#',tmp_res9.row_no, ':', tmp_res9.value)
-        
+                
+                
 
 res_lst10 = chk_res_lst(r10.results)
 if res_lst10 == True:
-    print(f'\nRule 10: {r10.name} [OK]')
+    print(f'Rule 10: {r10.name} [OK]')
 else:
-    print(f'\nRule 10: {r10.name} [NOT OK]')
+    print(f'Rule 10: {r10.name} [NOT OK]')
 for tmp_res10 in r10.results:
     if tmp_res10.res == False:
         print('\tRow#',tmp_res10.row_no, ':', tmp_res10.value)
@@ -217,9 +234,9 @@ for tmp_res10 in r10.results:
     
 res_lst11 = chk_res_lst(r11.results)
 if res_lst11 == True:
-    print(f'\nRule 11: {r11.name} [OK]')
+    print(f'Rule 11: {r11.name} [OK]')
 else:
-    print(f'\nRule 11: {r11.name} [NOT OK]')
+    print(f'Rule 11: {r11.name} [NOT OK]')
 for tmp_res11 in r11.results:
     if tmp_res11.res == False:
         print('\tRow#',tmp_res11.row_no, ':', tmp_res11.value)
@@ -227,9 +244,9 @@ for tmp_res11 in r11.results:
 
 res_lst12 = chk_res_lst(r12.results)
 if res_lst12 == True:
-    print(f'\nRule 12: {r12.name} [OK]')
+    print(f'Rule 12: {r12.name} [OK]')
 else:
-    print(f'\nRule 12: {r12.name} [NOT OK]')
+    print(f'Rule 12: {r12.name} [NOT OK]')
 for tmp_res12 in r12.results:
     if tmp_res12.res == False:
         print('\tRow#',tmp_res12.row_no, ':', tmp_res12.value)
@@ -237,9 +254,23 @@ for tmp_res12 in r12.results:
 
 res_lst13 = chk_res_lst(r13.results)
 if res_lst13 == True:
-    print(f'\nRule 13: {r13.name} [OK]')
+    print(f'Rule 13: {r13.name} [OK]')
 else:
-    print(f'\nRule 13: {r13.name} [NOT OK]')
+    print(f'Rule 13: {r13.name} [NOT OK]')
 for tmp_res13 in r13.results:
     if tmp_res13.res == False:
         print('\tRow#',tmp_res13.row_no, ':', tmp_res13.value)
+
+
+res_lst14 = chk_res_lst(r14.results)
+if res_lst14 == True:
+    print(f'Rule 14: {r14.name} [OK]')
+else:
+    sep = ','
+    print(f'Rule 14: {r14.name} [NOT OK]')
+    print('\tExpected header:', 'id,hostname,ip-address,criticality,freq,location')
+    print('\tReceived header:',sep.join(r14.results[0].value))
+    
+
+
+    
