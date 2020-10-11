@@ -56,7 +56,7 @@ with open('lptp_info.csv','r') as csv1:
             r14.results.append(res_r14)
             ctr += 1
 
-        # Appending the values of each sublist into their respective lists
+        # Appending the values of each row into their respective lists
         id_lst.append(row[0])
         hostname_lst.append(row[1])
         ip_addr_lst.append(row[2])
@@ -71,9 +71,9 @@ num_rows = len(ip_addr_lst)
 # Validate the CSV fields
 for i in range(1, num_rows):
 
-    # THE FOLLOWING LOGIG IS APPLICABLE TO ALL THE VALIDATIONS BELOW :
-    # LOGIC : Appliying the respective functions according to the 'rules'
-    #       : Then creating a result object and storing the "rollno", "value", and the "result" that came from appliying the function
+    # THE FOLLOWING LOGIC IS APPLICABLE TO ALL THE VALIDATIONS BELOW :
+    # LOGIC : Applying the respective functions according to the 'rules'
+    #       : Then creating a result object and storing the "row no", "value", and the "result" that came from applying the function
     #       : Then we are appending the created result object in the respective rule object's results list
 
     # validations on id field - r1, r2, r3
