@@ -7,6 +7,9 @@ verify_ssl = true
 
 [packages]
 requests = "*"
+pandas = "*"
+jupyter = "*"
+matplotlib = "*"
 
 [requires]
 python_version = "3.8"
