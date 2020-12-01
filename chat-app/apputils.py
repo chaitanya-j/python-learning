@@ -107,5 +107,17 @@ def cl_handle_login(server_sock):
     server_sock.send(bytes(user_creds,'utf-8'))
 
 
-def handle_client_msgs():
-    pass
+def handle_client_msgs(client_obj, client_dict):
+    while True:
+        msg = client_obj.sock.recv(1024).decode('utf-8')
+        if msg.upper().startswith('START CHAT'):
+            spl_msg = msg.split(' ')
+            obj = client_dict.get(spl_msg[2]) 
+            client_obj.send(bytes(f'Starting chat with {spl_msg[2]}....'))
+            while True:
+                chat_msg = client_obj.sock.recv(1024).decode('utf-8')
+                obj.sock.send(bytes(f'{client_obj.user} {chat_msg}','utf-8'))
+        
+        else:
+            ack = f'You just sent me : {msg}'
+            client_obj.sock.send(bytes(ack,'utf-8'))
