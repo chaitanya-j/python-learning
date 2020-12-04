@@ -27,7 +27,7 @@ while True:
     
     if login_result == True:
 
-        print(f'Client connected {client_addr} username {login_username}')
+        print(f'Client connected {client_addr} username {login_username}!!!')
         
         id += 1
         c = srvr_utils.Client(id, client_sock, client_addr, login_username)

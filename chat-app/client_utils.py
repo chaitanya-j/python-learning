@@ -3,6 +3,7 @@
 
 import configparser
 import getpass
+import time
 
 
 
@@ -33,12 +34,26 @@ def cl_handle_login(server_sock):
 
 
 
-def send_cli_msgs(server_soc):
+def handle_user_msgs(server_soc):
     while True:
-        msg = input('<= ')
+        time.sleep(0.5)
+        msg = input('\n\t\t\t\t\t\t\t<<< ')
         server_soc.send(bytes(msg,'utf-8'))
         
 def recv_srvr_msgs(server_s):
     while True:
         dec_msg = server_s.recv(100).decode('utf-8')
-        print(f'=> {dec_msg}') 
+        print(f'\n\t\t>>> {dec_msg}') 
+
+        if dec_msg == 'Starting chat with':
+                while True:
+                    #time.sleep(0.5)
+                    ms = input('<=')
+                    server_s.send(bytes(ms,'utf-8'))
+                    print('-------------------------------------------------------------------')
+                    m = server_s.recv(1024).decode('utf-8')
+                    print(m)
+
+
+        elif dec_msg == 'Sorry! The user is unavailable!':
+            print(dec_msg)

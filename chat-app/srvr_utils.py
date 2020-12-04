@@ -72,7 +72,6 @@ def handle_client_msgs(client_obj, client_dict):
             print(f'$$$ Attempto start chat with user {obj}')
             if obj != None:
                 client_obj.sock.send(bytes(f'Starting chat with {spl_msg[2]}....','utf-8'))
-                client_obj.sock.send(bytes('start','utf-8'))
 
                 obj.sock.send(bytes('A client is chatting with you','utf-8'))
             
