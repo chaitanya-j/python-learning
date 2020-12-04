@@ -1,11 +1,11 @@
 # This module provides the server side code
 import socket
-import apputils
+import srvr_utils
 import threading
 
 # Get init config parameters
 id = 100
-server_ip, server_port, user_creds = apputils.srv_init()
+server_ip, server_port, user_creds = srvr_utils.srv_init()
 
 print(server_ip, server_port, user_creds)
 
@@ -23,13 +23,19 @@ user_objects = {}
 while True:
     client_sock, client_addr = server_sock.accept()
     
-    login_username, login_result = apputils.srv_handle_login(client_sock, client_addr, user_creds)
+    login_username, login_result = srvr_utils.srv_handle_login(client_sock, client_addr, user_creds)
     
     if login_result == True:
+
         print(f'Client connected {client_addr} username {login_username}')
+        
         id += 1
-        c = apputils.Client(id, client_sock, client_addr, login_username)
+        c = srvr_utils.Client(id, client_sock, client_addr, login_username)
         print(f'Adding object for {login_username} to in-memory data structure')
+        
         user_objects[login_username] = c
+        
+        th = threading.Thread(target=srvr_utils.handle_client_msgs,args=[c,user_objects])
+        th.start()
     else:
         print(f'Failed login attempt from {client_addr}, username {login_username}')
