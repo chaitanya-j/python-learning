@@ -80,13 +80,9 @@ def handle_client_msgs(client_obj, client_dict):
                     print(cl_msg)
                     obj.sock.send(bytes(f'[{client_obj.user}] : {cl_msg}','utf-8'))
 
+
             else:
                 client_obj.sock.send(bytes('Sorry! The user is unavailable!','utf-8'))
-
-            #if obj != None:
-            #    while True:
-            #        chat_msg = client_obj.sock.recv(1024).decode('utf-8')
-            #        obj.sock.send(bytes(f'{client_obj.user} {chat_msg}','utf-8'))
         
         else:
             ack = f'You just sent me : {msg}'
