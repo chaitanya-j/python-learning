@@ -57,9 +57,10 @@ def recv_srvr_msgs(server_s):
         if dec_msg == 'A client is chatting with you':
             print('')
             print('------------------------------ CHAT IS STARTING ------------------------------')
-            print(f'\n>>>{dec_msg}')
-
-            
+            print(f'\n>>> {dec_msg}')
+            while True:
+                rply = input('<= ')
+                server_s.send(bytes(rply,'utf-8'))
 
         elif dec_msg == 'Sorry! The user is unavailable!':
             print(dec_msg)

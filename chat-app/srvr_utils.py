@@ -74,6 +74,10 @@ def handle_client_msgs(client_obj, client_dict):
                 client_obj.sock.send(bytes(f'Starting chat with {spl_msg[2]}....','utf-8'))
 
                 obj.sock.send(bytes('A client is chatting with you','utf-8'))
+                while True:
+                    cli2_recv = obj.sock.recv(1024).decode('utf-8')
+                    client_obj.sock.send(bytes(f'[{obj.user}] {cli2_recv}','utf-8'))
+
 
                 while True:
                     cl_msg = client_obj.sock.recv(1024).decode('utf-8')
