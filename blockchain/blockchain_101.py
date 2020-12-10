@@ -52,7 +52,7 @@ while True:
     if ctr == 1:
         print("The program may take a few seconds to start...")
     time.sleep(2)
-    #clear()
+    clear()
     print("WELCOME TO CHAITANYA'S BLOCKCHAIN DEMO!")
     print("Total blocks :",len(blockchain))
     print("Applications menu :")
