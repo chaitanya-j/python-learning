@@ -1,11 +1,27 @@
 import hashlib
 import block
 from os import system, name
+import time
 
 blockchain = []
 
 def validate_blk_chain():
-    pass
+    valid = False
+    for n in range(len(blockchain)):
+        hsh = blockchain[n].get_hash()
+        if blockchain[n] == blockchain[-1]:
+            print('This Blockchain is Valid!!')
+            break
+        prev_hsh = blockchain[n+1].prev_hash
+
+        if hsh == prev_hsh:
+            continue
+            valid = True
+
+        else:
+            print('Invalid Blockchain!!')
+            valid = False
+
 
 def add_block():
     if len(blockchain) == 0:
@@ -34,10 +50,18 @@ def clear():
     else: 
         _ = system('clear') 
 
-
+ctr = 1
 while True:
-    #clear()
+    if ctr == 1:
+        print("The program may take a few seconds to start...")
+    time.sleep(2)
+    clear()
     usr_in = input('1) Validate Block chain \n2) Add new Block \n3) Exit \n<<< ')
+    if usr_in == ' ' or usr_in == '':
+        print("Please enter a valid input! Please try again")
+        print("Aborting...")
+        break
+
     if int(usr_in) == 1:
         validate_blk_chain()
 
@@ -47,3 +71,4 @@ while True:
     if int(usr_in) == 3:
         print("Exiting....")
         exit()
+    ctr += 1
