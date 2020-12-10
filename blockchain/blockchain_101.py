@@ -27,16 +27,15 @@ def add_block():
     if len(blockchain) == 0:
         inp = input("Please enter the Data of your choice : ")
         blk_obj = block.Block('3kj13j4hbjh243b4hj23',inp)
-        print('Block craeted with hash :',blk_obj.get_hash())
+        print('Block created with hash :',blk_obj.get_hash())
         blockchain.append(blk_obj)
-        print("Total blocks :",len(blockchain))
-
+        
     else:
         data = input("Please enter the Data of your choice : ")
         b_obj = block.Block(blockchain[-1].get_hash(),data)
-        print('Block craeted with hash :',b_obj.get_hash())
+        print('Block created with hash :',b_obj.get_hash())
         blockchain.append(b_obj)
-        print("Total blocks :",len(blockchain))
+       
 
 def clear(): 
   
@@ -53,8 +52,12 @@ while True:
     if ctr == 1:
         print("The program may take a few seconds to start...")
     time.sleep(2)
-    clear()
-    usr_in = input('1) Validate Block chain \n2) Add new Block \n3) Exit \n<<< ')
+    #clear()
+    print("WELCOME TO CHAITANYA'S BLOCKCHAIN DEMO!")
+    print("Total blocks :",len(blockchain))
+    print("Applications menu :")
+    print()
+    usr_in = input('1) Validate Block chain \n2) Add new Block \n3) Exit \n>>> ')
     if usr_in == ' ' or usr_in == '':
         print("Please enter a valid input! Please try again")
         print("Aborting...")
