@@ -53,11 +53,12 @@ while True:
         print("The program may take a few seconds to start...")
     time.sleep(2)
     clear()
-    print("WELCOME TO CHAITANYA'S BLOCKCHAIN DEMO!")
+    print("WELCOME TO CHAITANYA'S BLOCKCHAIN DEMO!\n")
+    print('-'*30)
     print("Total blocks :",len(blockchain))
     print("Applications menu :")
     print()
-    usr_in = input('1) Validate Block chain \n2) Add new Block \n3) Exit \n>>> ')
+    usr_in = input('1) Validate block chain \n2) Add new block \n3) Print the blockchain  \n4) Exit \n>>> ')
     if usr_in == ' ' or usr_in == '':
         print("Please enter a valid input! Please try again")
         print("Aborting...")
@@ -69,7 +70,11 @@ while True:
     if int(usr_in) == 2:
         add_block()
 
-    if int(usr_in) == 3:
+    if int(usr_in) == 4:
         print("Exiting....")
         exit()
+
+    if int(usr_in) == 3:
+        for block in blockchain:
+            print(f"Block : {block}")
     ctr += 1
