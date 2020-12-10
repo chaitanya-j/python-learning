@@ -58,7 +58,7 @@ while True:
     print("Total blocks :",len(blockchain))
     print("Applications menu :")
     print()
-    usr_in = input('1) Validate block chain \n2) Add new block \n3) Print the blockchain  \n4) Exit \n>>> ')
+    usr_in = input('1) Validate block chain \n2) Add a new block \n3) Print the blockchain  \n4) Exit \n>>> ')
     if usr_in == ' ' or usr_in == '':
         print("Please enter a valid input! Please try again")
         print("Aborting...")
@@ -75,6 +75,6 @@ while True:
         exit()
 
     if int(usr_in) == 3:
-        for block in blockchain:
-            print(f"Block : {block}")
+        for blck in blockchain:
+            print(f"Block : {blck}")
     ctr += 1
