@@ -63,6 +63,7 @@ def srv_handle_login(client_sock, client_addr, user_creds):
 # -------------------------------------------------------------------------------------------------------------------------- #
 
 def handle_client_msgs(client_obj, client_dict):
+    chat_started = False
     while True:
         msg = client_obj.sock.recv(1024).decode('utf-8')
         print(msg)
@@ -74,12 +75,12 @@ def handle_client_msgs(client_obj, client_dict):
                 client_obj.sock.send(bytes(f'Starting chat with {spl_msg[2]}....','utf-8'))
 
                 obj.sock.send(bytes('A client is chatting with you','utf-8'))
-                while True:
-                    cli2_recv = obj.sock.recv(1024).decode('utf-8')
-                    client_obj.sock.send(bytes(f'[{obj.user}] {cli2_recv}','utf-8'))
 
+        if chat_started == True:
+            cli2_recv = obj.sock.recv(1024).decode('utf-8')
+            client_obj.sock.send(bytes(f'[{obj.user}] {cli2_recv}','utf-8'))
 
-                while True:
+               
                     cl_msg = client_obj.sock.recv(1024).decode('utf-8')
                     print(cl_msg)
                     obj.sock.send(bytes(f'[{client_obj.user}] : {cl_msg}','utf-8'))
@@ -88,7 +89,7 @@ def handle_client_msgs(client_obj, client_dict):
             else:
                 client_obj.sock.send(bytes('Sorry! The user is unavailable!','utf-8'))
         
-        else:
+       if chat_started == False:
             ack = f'You just sent me : {msg}'
             print(ack)
             client_obj.sock.send(bytes(ack,'utf-8'))
