@@ -77,4 +77,5 @@ while True:
     if int(usr_in) == 3:
         for blck in blockchain:
             print(f"Block : {blck}")
+        time.sleep(5)
     ctr += 1
