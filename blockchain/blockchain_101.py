@@ -25,10 +25,8 @@ def validate_blk_chain():
 
 def add_block():
     if len(blockchain) == 0:
-        print()
-        print("This is a genesis block so the data is not taken from you....")
-        print()
-        blk_obj = block.Block('3kj13j4hbjh243b4hj23','I am a Pytonista')
+        inp = input("Please enter the Data of your choice : ")
+        blk_obj = block.Block('3kj13j4hbjh243b4hj23',inp)
         print('Block craeted with hash :',blk_obj.get_hash())
         blockchain.append(blk_obj)
         print("Total blocks :",len(blockchain))
