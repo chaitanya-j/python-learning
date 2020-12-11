@@ -7,20 +7,23 @@ blockchain = []
 
 def validate_blk_chain():
     valid = False
-    for n in range(len(blockchain)):
+    for n in range(len(blockchain) - 1):
         hsh = blockchain[n].get_hash()
-        if blockchain[n] == blockchain[-1]:
-            print('This Blockchain is Valid!!')
-            break
+        
         prev_hsh = blockchain[n+1].prev_hash
 
         if hsh == prev_hsh:
-            continue
             valid = True
+            
 
         else:
-            print('Invalid Blockchain!!')
             valid = False
+
+    if valid == True:
+        return 'This Blockchain is Valid!!'
+
+    else:
+        return 'Invalid Blockchain!!'
 
 
 def add_block():
@@ -65,7 +68,8 @@ while True:
         break
 
     if int(usr_in) == 1:
-        validate_blk_chain()
+        outp = validate_blk_chain()
+        print(outp)
 
     if int(usr_in) == 2:
         add_block()
