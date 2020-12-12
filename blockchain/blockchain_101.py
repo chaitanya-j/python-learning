@@ -8,22 +8,21 @@ blockchain = []
 def validate_blk_chain():
     valid = False
     for n in range(len(blockchain) - 1):
-        hsh = blockchain[n].get_hash()
+        curr_blk_hsh = blockchain[n].get_hash()
         
-        prev_hsh = blockchain[n+1].prev_hash
+        nxt_blk_prev_hsh = blockchain[n+1].prev_hash
 
-        if hsh == prev_hsh:
+        if curr_blk_hsh == nxt_blk_prev_hsh:
             valid = True
             
 
         else:
             valid = False
+            return 'Invalid Blockchain!!'
+
 
     if valid == True:
         return 'This Blockchain is Valid!!'
-
-    else:
-        return 'Invalid Blockchain!!'
 
 
 def add_block():
@@ -35,12 +34,25 @@ def add_block():
         
     else:
         data = input("Please enter the Data of your choice : ")
-        b_obj = block.Block(blockchain[-1].get_hash(),data)
+        b_obj = block.Block(blockchain[-1].get_hash(), data)
         print('Block created with hash :',b_obj.get_hash())
         blockchain.append(b_obj)
-       
 
-def clear(): 
+def tamper_block():
+    inp = int(input("Block no : "))     
+    if blockchain[inp-1] in blockchain:
+        tamp_block = blockchain[inp-1] 
+        print(f"Previous data : {tamp_block.data}")
+        data2 = input("Changed data : ")
+        tamp_block.data = data2
+        print(f"Data after change : {tamp_block.data}")
+
+    else:
+        print("Block not in blockchain!")
+
+
+
+def clear():
   
     # for windows 
     if name == 'nt': 
@@ -50,10 +62,12 @@ def clear():
     else: 
         _ = system('clear') 
 
-ctr = 1
+starting = True
 while True:
-    if ctr == 1:
+    if starting == True:
         print("The program may take a few seconds to start...")
+        starting = False
+
     time.sleep(2)
     clear()
     print("WELCOME TO CHAITANYA'S BLOCKCHAIN DEMO!")
@@ -61,25 +75,27 @@ while True:
     print("Total blocks :",len(blockchain))
     print("Applications menu :")
     print()
-    usr_in = input('1) Validate block chain \n2) Add a new block \n3) Print the blockchain  \n4) Exit \n>>> ')
+    usr_in = input('1) Add a new block \n2) Print the blockchain \n3) Validate block chain \n4) Change block data \n5) Exit \n>>> ')
     if usr_in == ' ' or usr_in == '':
         print("Please enter a valid input! Please try again")
-        print("Aborting...")
-        break
+        
 
-    if int(usr_in) == 1:
+
+    elif int(usr_in) == 3:
         outp = validate_blk_chain()
         print(outp)
 
-    if int(usr_in) == 2:
+    elif int(usr_in) == 1:
         add_block()
 
-    if int(usr_in) == 4:
+    elif int(usr_in) == 5:
         print("Exiting....")
         exit()
 
-    if int(usr_in) == 3:
+    elif int(usr_in) == 2:
         for blck in blockchain:
-            print(f"Block : {blck}")
+            print(blck)
         time.sleep(5)
-    ctr += 1
+
+    elif int(usr_in) == 4:
+        tamper_block()

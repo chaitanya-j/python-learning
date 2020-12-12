@@ -1,4 +1,5 @@
 import hashlib
+
 class Block:
     def __init__(self,prev_hash,data):
         self.prev_hash = prev_hash
