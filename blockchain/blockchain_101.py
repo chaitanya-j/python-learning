@@ -18,6 +18,8 @@ def validate_blk_chain():
 
         else:
             valid = False
+            print(f"Hash of the current block : {blockchain[n].get_hash()}")
+            print(f"Previous hash of next block : {blockchain[n+1].prev_hash}")
             return 'Invalid Blockchain!!'
 
 
@@ -99,3 +101,4 @@ while True:
 
     elif int(usr_in) == 4:
         tamper_block()
+        time.sleep(5)
