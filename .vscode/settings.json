@@ -2,5 +2,5 @@
     "python.pythonPath": "/home/chaitanya/.local/share/virtualenvs/python-learning-Jii7DeQ3/bin/python",
     "editor.fontSize": 18,
     "powermode.enabled": true,
-    "editor.lineHighlightBackground": "#1E1E1EAA"
+    "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'"
 }
