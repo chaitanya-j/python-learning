@@ -1,7 +1,4 @@
-import re
+st = "Chaitanya"
+st_lst = st.split()
 
-line = "Hello!! How 'are' @you & how is $#(){} your dad?? I ""am"" ^ *fine"
-
-puncs = "[ " " ! "  "' ( $ ? % &) * +  - . / : ; < = > ? @  \ ^ _ ` { , # | } ~ " " ]"
-mod_line = re.sub(puncs," ",line)
-print(mod_line)
+print(isinstance(st, list))

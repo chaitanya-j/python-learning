@@ -1,49 +1,38 @@
-import statistics
 import re
 
 all_wrds_dict = {}
+word_lst = []
 
-file = open('/home/chaitanya/Work/learning/python-learning/freq_calc/sample.txt')
-#print(file.readlines())
+def clean_line(line):
+    line = line.lower()
+    puncs = r"[^a-zA-Z0-9'\s]"
+   
+    cleaned_line = re.sub(puncs,"",line)
+    return cleaned_line
 
-line_list = file.readlines()
+with open('/home/chaitanya/Work/learning/python-learning/freq_calc/sample.txt') as f:
+    for line in f:
+        cleaned_line = clean_line(line)
+        words = cleaned_line.split()
 
-
-def remove_punc(line):
-    if line.endswith('\n'):
-        line = line.rstrip('\n')
-        line = line.lower()
-    puncs = "[ " " ! "  "' ( $ % &) * +  - . / : ; < = > ? @  \ ^ _ ` { , | } ~ " " ]"
-    
-    mod_line = re.sub(puncs," ",line)
-    return mod_line.split()
-
-mod_line_lst = []
-for line in line_list:
-    mod_line = remove_punc(line)
-    mod_line_lst.append(mod_line)
-
-
-for mod_lst_ in mod_line_lst:
-    for no in range(len(mod_lst_)):
-        if mod_lst_[no] in all_wrds_dict.keys():
-            all_wrds_dict[mod_lst_[no]] += 1
-
+        if isinstance(words, list):
+            for word in words:
+                word_lst.append(word)
         else:
-            repetition = mod_lst_.count(mod_lst_[no])
-            all_wrds_dict[mod_lst_[no]] = repetition
+            word_lst.append(words)
 
 
-if len(all_wrds_dict.keys()) >= 10: 
-    for itr in range(10):
+for word in word_lst:
+    if all_wrds_dict.get(word) == None:
+        all_wrds_dict[word] = 1
+    else:
+        all_wrds_dict[word] += 1
 
+
+for _ in range(20):
+
+    if (len(all_wrds_dict.keys()) > 0):
         mx = max(all_wrds_dict, key=all_wrds_dict.get)    
         print(f"{mx} : {all_wrds_dict.get(mx)}")
         del all_wrds_dict[mx]
 
-else:
-    for it in range(5):
-
-        mx = max(all_wrds_dict, key=all_wrds_dict.get)    
-        print(f"{mx} : {all_wrds_dict.get(mx)}")
-        del all_wrds_dict[mx]
