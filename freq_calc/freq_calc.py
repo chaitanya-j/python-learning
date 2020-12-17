@@ -10,23 +10,24 @@ def clean_line(line):
     cleaned_line = re.sub(puncs,"",line)
     return cleaned_line
 
-with open('/home/chaitanya/Work/learning/python-learning/freq_calc/sample.txt') as f:
+with open('/home/chaitanya/Work/learning/python-learning/freq_calc/test.txt') as f:
     for line in f:
         cleaned_line = clean_line(line)
         words = cleaned_line.split()
 
         if isinstance(words, list):
             for word in words:
-                word_lst.append(word)
+                if all_wrds_dict.get(word) == None:
+                    all_wrds_dict[word] = 1
+                else:
+                    all_wrds_dict[word] += 1
         else:
-            word_lst.append(words)
+            if all_wrds_dict.get(word) == None:
+                all_wrds_dict[word] = 1
+            else:
+                all_wrds_dict[word] += 1
 
 
-for word in word_lst:
-    if all_wrds_dict.get(word) == None:
-        all_wrds_dict[word] = 1
-    else:
-        all_wrds_dict[word] += 1
 
 
 for _ in range(20):
