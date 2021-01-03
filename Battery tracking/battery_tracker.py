@@ -17,39 +17,44 @@ def check_status():
             sts = line.strip()
         return sts
 
-
-
-cnt = 1
 batt_percentage = check_perc()
 batt_status = check_status()
 
+max_batt_perc = 10
+sleep_time = 120
 
+flg_first_alert = True
 while True:
+
     print('Checking again...')
-    if cnt != 1:
+    if flg_first_alert == False:
         batt_percentage = check_perc()
         batt_status = check_status()
 
-    if int(batt_percentage) > 20 and batt_status != "Charging":
+    if int(batt_percentage) > max_batt_perc and batt_status == "Charging" :
         root = tk.Tk()
-        alert_label = tk.Label(text="Alert! Battery charged. Please disconnect the charger!")
-        btn_ok = tk.Button(text="OK")
-        alert_img = tk.Canvas(root,height=50,width=50)
-        btn_ok.bind("<Button-1>",lambda e: root.destroy())
-        alert_img.pack()
-        img = ImageTk.PhotoImage(Image.open("alert2.png"))  
-        alert_img.create_image(20,20,image=img)     
-        alert_label.pack()
-        btn_ok.pack()
-        root.mainloop() 
+        if flg_first_alert == True:
+            alert_label = tk.Label(text="Alert! Battery charged. Please disconnect the charger!")
+            flg_first_alert = False
         
+        else:
+            alert_label = tk.Label(text="Alert! Please disconnect the charger to avoid damaging the battery!")
+
+        btn_ok = tk.Button(text="OK")
+        btn_ok.bind("<Button-1>",lambda e: root.destroy())
+        alert_label.pack()
+        root.title('Warning Battery Full')
+        btn_ok.pack()
+       
+        root.mainloop() 
+
+    
     else:
         print("Charger not connected. Alert not required")
 
     
 
-    time.sleep(120)
-    cnt += 1
+    time.sleep(sleep_time)
 
     
     

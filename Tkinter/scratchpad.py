@@ -1,18 +1,12 @@
 import tkinter as tk
-
-perc = 20
-sts = "Charging"
-
+from PIL import ImageTk, Image
 root = tk.Tk()
 
-def handle_click(event):
-    global root
-    print("The button was clicked!")
-    root.destroy()
+image = Image.open('alert.png')
+# The (450, 350) is (height, width)
+image = image.resize((450, 350), Image.ANTIALIAS)
+my_img = ImageTk.PhotoImage(image)
+my_img = tk.Label(image = my_img)
+my_img.pack()
 
-button = tk.Button(text="Click me!")
-
-button.bind("<Button-1>", handle_click)
-
-button.pack()
 root.mainloop()
