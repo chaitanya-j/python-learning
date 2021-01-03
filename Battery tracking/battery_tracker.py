@@ -50,7 +50,7 @@ while True:
 
     
     else:
-        print("Charger not connected. Alert not required")
+        print("Charging insufficient. Alert not required")
 
     
 
