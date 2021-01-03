@@ -20,7 +20,7 @@ def check_status():
 batt_percentage = check_perc()
 batt_status = check_status()
 
-max_batt_perc = 10
+max_batt_perc = 98
 sleep_time = 120
 
 flg_first_alert = True
