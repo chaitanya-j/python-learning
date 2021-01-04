@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import messagebox
 import time
 import threading
-from PIL import ImageTk,Image  
 
     
 def check_perc():
@@ -24,6 +23,17 @@ max_batt_perc = 98
 sleep_time = 120
 
 flg_first_alert = True
+
+root = tk.Tk()
+alert_label = tk.Label(text="Battery monitor program started")
+btn_ok = tk.Button(text="OK")
+btn_ok.bind("<Button-1>",lambda e: root.destroy())
+alert_label.pack()
+root.title('Battery Monitor by Chaitanya')
+btn_ok.pack()
+
+root.mainloop()
+
 while True:
 
     print('Checking again...')
@@ -43,7 +53,7 @@ while True:
         btn_ok = tk.Button(text="OK")
         btn_ok.bind("<Button-1>",lambda e: root.destroy())
         alert_label.pack()
-        root.title('Warning Battery Full')
+        root.title('Warning: Battery Monitor by Chaitanya')
         btn_ok.pack()
        
         root.mainloop() 
