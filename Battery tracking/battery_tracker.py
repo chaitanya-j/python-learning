@@ -14,8 +14,8 @@ def check_perc():
     '''
     This is a function which will check the current battery percentage of your device. There is a file with the following 
     path : "/sys/class/power_supply/BAT0/capacity" where the current battery percentage is stored.
-    IMPORTANT : IF YOU ARE A WINDOWS USER THEN, THE PATH WILL HAVE A MODIFICATION : IN THE PATH "/sys/class/power_supply/BAT0/capacity"
-    IT WILL BE "BAT1" INSTEAD OF "BAT0"
+    IMPORTANT : IF THIS IS NOT WORKING THEN, THE PATH WILL HAVE A MODIFICATION : IN THE PATH "/sys/class/power_supply/BAT0/capacity"
+                IT WILL BE "BAT1" INSTEAD OF "BAT0"
     '''
     with open("/sys/class/power_supply/BAT0/capacity") as batt_per:
         for line in batt_per:
@@ -26,6 +26,8 @@ def check_status():
     '''
     This is a function which will check the current battery status(it's charging or discharging) of your device. There is a file with the following 
     path : "/sys/class/power_supply/BAT0/status" where the current battery percentage is stored.
+    IMPORTANT : IF THIS IS NOT WORKING THEN, THE PATH WILL HAVE A MODIFICATION : IN THE PATH "/sys/class/power_supply/BAT0/capacity"
+                IT WILL BE "BAT1" INSTEAD OF "BAT0"
     '''
     with open("/sys/class/power_supply/BAT0/status") as batt_stat:
         for line in batt_stat:
@@ -65,16 +67,20 @@ while True:
         if flg_first_alert == True:
             alert_label = tk.Label(text="Alert! Battery charged. Please disconnect the charger!")
             flg_first_alert = False
-    
+        
+        # If the user does not disconnect the charger even after alerting him once, there will be a different messagebox.
         else:
             alert_label = tk.Label(text="Alert! Please disconnect the charger to avoid damaging the battery!")
 
         btn_ok = tk.Button(text="OK")
+
+        # If the "OK" button in the messagebox is pressed, the root window will be destroyed.
         btn_ok.bind("<Button-1>",lambda e: root.destroy())
         alert_label.pack()
         root.title('Warning: Battery Monitor by Chaitanya')
         btn_ok.pack()
        
+       # Starting the mainloop.
         root.mainloop() 
 
     if batt_status == "Discharging":
@@ -85,6 +91,8 @@ while True:
         root2 = tk.Tk()    
         alert_label = tk.Label(text="Alert! Charging very low, please connect the charger!!!")
         button_ok = tk.Button(text="OK")
+        
+        # If the "OK" button in the messagebox is pressed, the root window will be destroyed.
         button_ok.bind("<Button-1>",lambda e: root2.destroy())
         alert_label.pack()
         root2.title('Warning: Battery Monitor by Chaitanya')
