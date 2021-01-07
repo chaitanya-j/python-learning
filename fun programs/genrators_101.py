@@ -4,5 +4,15 @@ def square_num(nums_list):
 
 sq_num = square_num([1,2,3,4,5,6,7,8,9,10])
 
-for sq in sq_num:
-    print(sq)
+print(next(sq_num)) 
+print(next(sq_num))
+print(next(sq_num))
+print(next(sq_num))
+print(next(sq_num))
+print(next(sq_num))
+print(next(sq_num))
+print(next(sq_num))
+print(next(sq_num))
+print(next(sq_num))
+
+ 

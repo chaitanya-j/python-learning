@@ -39,7 +39,7 @@ batt_status = check_status()
 
 # Defining the max and min battery percentage
 max_batt_perc = 98
-min_batt_perc = 60
+min_batt_perc = 10
 sleep_time = 120
 
 flg_first_alert = True
@@ -91,7 +91,7 @@ while True:
         root2 = tk.Tk()    
         alert_label = tk.Label(text="Alert! Charging very low, please connect the charger!!!")
         button_ok = tk.Button(text="OK")
-        
+
         # If the "OK" button in the messagebox is pressed, the root window will be destroyed.
         button_ok.bind("<Button-1>",lambda e: root2.destroy())
         alert_label.pack()
