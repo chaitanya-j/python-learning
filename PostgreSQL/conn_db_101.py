@@ -7,7 +7,7 @@ try:
     # Load all subjects
     sub_name_dict = {}
     cur_subject = con.cursor()
-    subjectdb_query = f'select * from subject'
+    subjectdb_query = 'select * from subject'
     cur_subject.execute(subjectdb_query)
     subject_records = cur_subject.fetchall()  
     #print(subject_records)

@@ -1,4 +1,4 @@
-
+gender = input("enter your gender : ")
 school = input("enter your school's name:")
 std = int(input("enter your standard:"))
 div = input("enter your division:")

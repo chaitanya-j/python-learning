@@ -8,8 +8,31 @@
 
 import tkinter as tk
 import time
+import logging
+import configparser
 
-    
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+logging_level = config.get('DEFAULT','logging_level')
+
+if logging_level == 'DEBUG':
+    logging_level = logging.DEBUG
+elif logging_level == 'INFO':
+    logging_level = logging.INFO
+elif logging_level == 'WARNING':
+    logging_level = logging.WARNING
+elif logging_level == 'ERROR':
+    logging_level = logging.ERROR
+
+LOG_FORMAT = "%(levelname)s %(asctime)s - %(message)s"
+logging.basicConfig(filename = "battery_tracker.log",
+                    level = logging_level,
+                    format = LOG_FORMAT,
+                    )
+
+logger = logging.getLogger()
+
 def check_perc():
     '''
     This is a function which will check the current battery percentage of your device. There is a file with the following 
@@ -38,9 +61,14 @@ batt_percentage = check_perc()
 batt_status = check_status()
 
 # Defining the max and min battery percentage
-max_batt_perc = 98
-min_batt_perc = 10
-sleep_time = 120
+max_batt_perc = int(config.get('DEFAULT','max_batt_perc'))
+sleep_time = int(config.get('DEFAULT','check_interval'))
+
+logger.info('**************************************************************************************************')
+logger.info(f'Config:logging_level = {logging_level}')
+logger.info(f'Config:max_batt_perc = {max_batt_perc}')
+logger.info(f'Config:check_interval = {sleep_time}')
+
 
 flg_first_alert = True
 
@@ -54,22 +82,34 @@ btn_ok.pack()
 
 root.mainloop()
 
+logger.info('Starting the battery tracking program')
+
+time.sleep(4)
+
 while True:
 
-    print('Checking again...')
+    logger.info('Checking again...')
     if flg_first_alert == False:
         batt_percentage = check_perc()
         batt_status = check_status()
 
-# This block of code will show messagebox if charging is above "98" and status is "Charging"
-    if int(batt_percentage) > max_batt_perc and batt_status == "Charging" :
+    logger.debug(f'batt_percentage:{batt_percentage}')
+    logger.debug(f'batt_status:{batt_status}')
+
+    # This block of code will show messagebox if charging is above "98" and status is "Charging"
+    if int(batt_percentage) > max_batt_perc and (batt_status == "Charging" or batt_status == "Full"):
+        logger.info('Batter charged. Issuing alert')
         root = tk.Tk()
+        logger.debug('root tkinter window created')
         if flg_first_alert == True:
+            logger.debug('showing the first alert')
+            
             alert_label = tk.Label(text="Alert! Battery charged. Please disconnect the charger!")
             flg_first_alert = False
         
         # If the user does not disconnect the charger even after alerting him once, there will be a different messagebox.
         else:
+            logger.info('Charger still not disconnected. Issuing warning!')
             alert_label = tk.Label(text="Alert! Please disconnect the charger to avoid damaging the battery!")
 
         btn_ok = tk.Button(text="OK")
@@ -81,30 +121,13 @@ while True:
         btn_ok.pack()
        
        # Starting the mainloop.
+        logger.debug('starting main loop for the tkinter window')
         root.mainloop() 
-
-    if batt_status == "Discharging":
-        flg_first_alert = True
-
-# This block of code will show messagebox if charging is below "10" and status is "Discharging"
-    if int(batt_percentage) < min_batt_perc and batt_status != "Charging" :
-        root2 = tk.Tk()    
-        alert_label = tk.Label(text="Alert! Charging very low, please connect the charger!!!")
-        button_ok = tk.Button(text="OK")
-
-        # If the "OK" button in the messagebox is pressed, the root window will be destroyed.
-        button_ok.bind("<Button-1>",lambda e: root2.destroy())
-        alert_label.pack()
-        root2.title('Warning: Battery Monitor by Chaitanya')
-        button_ok.pack()
-        root2.mainloop()
-
-
-        
 
     
     else:
-        print("Charging insufficient. Alert not required")
+
+        logger.info("Charging insufficient or charger is disconnected. Alert not required")
 
     
 
