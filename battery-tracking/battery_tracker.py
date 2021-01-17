@@ -6,6 +6,10 @@
 ## Hope you guys like this wonderfull program!
 ## Enjoy!!!
 
+
+                    ####### PLEASE READ THE "README" FILE WHICH IS GIVEN WITH THE BATTERY TRACKER PACKAGE #######
+
+
 import tkinter as tk
 import time
 import logging
@@ -40,10 +44,14 @@ def check_perc():
     IMPORTANT : IF THIS IS NOT WORKING THEN, THE PATH WILL HAVE A MODIFICATION : IN THE PATH "/sys/class/power_supply/BAT0/capacity"
                 IT WILL BE "BAT1" INSTEAD OF "BAT0"
     '''
-    with open("/sys/class/power_supply/BAT0/capacity") as batt_per:
-        for line in batt_per:
-            cap = line.strip()
-        return cap
+    try:
+        with open("/sys/class/power_supply/BAT0/capacity") as batt_per:
+            for line in batt_per:
+                cap = line.strip()
+            logger.debug(f"<<<<>>>>{cap}")    
+            return cap
+    except Exception as e:
+        logger.debug(f"Exeption occured while reading BAT0 capacity {e}")
 
 def check_status():
     '''
@@ -52,10 +60,15 @@ def check_status():
     IMPORTANT : IF THIS IS NOT WORKING THEN, THE PATH WILL HAVE A MODIFICATION : IN THE PATH "/sys/class/power_supply/BAT0/capacity"
                 IT WILL BE "BAT1" INSTEAD OF "BAT0"
     '''
-    with open("/sys/class/power_supply/BAT0/status") as batt_stat:
-        for line in batt_stat:
-            sts = line.strip()
-        return sts
+    try:
+        with open("/sys/class/power_supply/BAT0/status") as batt_stat:
+            for line in batt_stat:
+                sts = line.strip()
+            logger.debug(f"<<<<>>>>{sts}")    
+            return sts
+
+    except Exception as e:
+        logger.debug(f"Exeption occured while reading BAT0 status {e}")    
 
 batt_percentage = check_perc()
 batt_status = check_status()
@@ -89,9 +102,8 @@ time.sleep(4)
 while True:
 
     logger.info('Checking again...')
-    if flg_first_alert == False:
-        batt_percentage = check_perc()
-        batt_status = check_status()
+    batt_percentage = check_perc()
+    batt_status = check_status()
 
     logger.debug(f'batt_percentage:{batt_percentage}')
     logger.debug(f'batt_status:{batt_status}')
