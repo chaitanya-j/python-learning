@@ -1,14 +1,11 @@
 import tkinter as tk
-from PIL import ImageTk, Image 
+from PIL import ImageTk, Image
+
+path = '/home/chaitanya/Work/learning/python-learning/battery-tracking/disconnecting-plug.jpg'
 
 root = tk.Tk()
-canvas = tk.Canvas(width=500,height=500)
-
-canvas.pack()
-
-photo = ImageTk.PhotoImage(Image.open('disconnecting-plug.jpg'))
-
-#photo = tk.PhotoImage(file="//home//chaitanya//Work//learning//python-learning//Battery tracking//disconnecting-plug.jpg")
-canvas.create_image(250,-90, image=photo, anchor=tk.N)
+img = ImageTk.PhotoImage(Image.open(path))
+panel = tk.Label(root, image = img)
+panel.pack(side = "bottom", fill = "both", expand = "yes")
 
 root.mainloop()

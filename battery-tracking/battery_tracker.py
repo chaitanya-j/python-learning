@@ -13,8 +13,10 @@
 import tkinter as tk
 import time
 import logging
+from PIL import ImageTk, Image
 import configparser
 
+path = '/home/chaitanya/Work/learning/python-learning/battery-tracking/disconn_charg.png'
 config = configparser.ConfigParser()
 config.read('config.ini')
 
@@ -115,13 +117,16 @@ while True:
         logger.debug('root tkinter window created')
         if flg_first_alert == True:
             logger.debug('showing the first alert')
-            
+            img = ImageTk.PhotoImage(Image.open(path))
+            panel = tk.Label(root, image = img).pack()
             alert_label = tk.Label(text="Alert! Battery charged. Please disconnect the charger!")
             flg_first_alert = False
         
         # If the user does not disconnect the charger even after alerting him once, there will be a different messagebox.
         else:
             logger.info('Charger still not disconnected. Issuing warning!')
+            img = ImageTk.PhotoImage(Image.open(path))
+            panel = tk.Label(root, image = img).pack()
             alert_label = tk.Label(text="Alert! Please disconnect the charger to avoid damaging the battery!")
 
         btn_ok = tk.Button(text="OK")
@@ -131,7 +136,7 @@ while True:
         alert_label.pack()
         root.title('Warning: Battery Monitor by Chaitanya')
         btn_ok.pack()
-       
+
        # Starting the mainloop.
         logger.debug('starting main loop for the tkinter window')
         root.mainloop() 
