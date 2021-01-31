@@ -16,6 +16,8 @@ import logging
 from PIL import ImageTk, Image
 import configparser
 
+comp_perc = 0
+
 path = '/home/chaitanya/Work/learning/python-learning/battery-tracking/disconn_charg.png'
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -75,6 +77,8 @@ def check_status():
 batt_percentage = check_perc()
 batt_status = check_status()
 
+prgrm_strt_perc = check_perc()
+
 # Defining the max and min battery percentage
 max_batt_perc = int(config.get('DEFAULT','max_batt_perc'))
 sleep_time = int(config.get('DEFAULT','check_interval'))
@@ -100,6 +104,8 @@ root.mainloop()
 logger.info('Starting the battery tracking program')
 
 time.sleep(4)
+
+cnt = 0
 
 while True:
 
@@ -146,9 +152,21 @@ while True:
 
         logger.info("Charging insufficient or charger is disconnected. Alert not required")
 
-    
+
+    if cnt >= 15 and batt_percentage == comp_perc:
+        config["DEFAULT"] = {
+            "logging_level": logging_level,
+            "max_batt_perc": max_batt_perc - 5,
+            "check_interval": 120
+        }
+
+        with open('config.ini', 'w') as conf:
+            config.write(conf)
+
+        comp_perc = batt_percentage
 
     time.sleep(sleep_time)
+    cnt += 1
 
     
     
