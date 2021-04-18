@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/home/chaitanya/.local/share/virtualenvs/python-learning-Jii7DeQ3/bin/python",
+    "python.pythonPath": "/usr/bin/python3.8",
     "editor.fontSize": 18,
     "powermode.enabled": false,
     "font" : "Fira Code iScript",
